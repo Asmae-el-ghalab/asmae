@@ -9,7 +9,10 @@ use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
+use App\Http\Controllers\contactControllerClient;
+use App\Http\Controllers\galleryControllerClient;
 use App\Http\Controllers\ProductControllerClient;
+use App\Http\Controllers\serviceControllerClient;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,11 +23,14 @@ Route::get('/client', function () {
 })->middleware(['auth', 'verified'])->name('client');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('client/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('client/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('client/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/client/product',[ProductControllerClient::class,"index"])->name('productClient');
+    Route::get('/client/service',[serviceControllerClient::class,"index"])->name('serviceClient');
+    Route::get('/client/gallery',[galleryControllerClient::class,"index"])->name('galleryClient');
+    Route::get('/client/contact',[contactControllerClient::class,"index"])->name('contactClient');
 });
 
 //Souhail est ajouté cette partie🐱‍👤
