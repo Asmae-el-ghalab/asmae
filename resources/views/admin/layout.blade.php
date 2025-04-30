@@ -12,7 +12,7 @@
 <body>
     <div class="menu">
         <ul>
-            <li class="profile" onclick="window.location='{{ route('profile.edit') }}'" style="cursor:pointer;">
+            <li class="profile" onclick="window.location=''" style="cursor:pointer;">
                 <div class="img-box">
                     <img src="{{ asset('assets/profile.webp') }}" alt="Logo">
                 </div>

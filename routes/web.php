@@ -7,21 +7,24 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\SettingsController;
-
-
+use App\Http\Controllers\Client\ProductController as ClientProductController;
+use App\Http\Controllers\Client\OrderController as ClientOrderController;
+use App\Http\Controllers\ProductControllerClient;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
-Route::get('/dashboard', function () {
+Route::get('/client', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('client');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/client/product',[ProductControllerClient::class,"index"])->name('productClient');
 });
 
 //Souhail est ajouté cette partie🐱‍👤
@@ -36,6 +39,13 @@ Route::middleware(['auth','admin'])->group(function (){
     Route::get('admin/income',[IncomeController::class, 'index'])->name('admin/income');
 
     Route::get('admin/settings',[SettingsController::class, 'index'])->name('admin/settings');
+});
+
+
+// Products routes
+Route::prefix('dashboard')->middleware(['auth'])->group(function () {
+    Route::get('/products', [ProductController::class, 'index'])
+        ->name('products.index');
 });
 
 require __DIR__.'/auth.php';

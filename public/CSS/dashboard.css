@@ -104,3 +104,7 @@ td:hover{
     background-color: gold;
     color: black;
 }
+.title-product{
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
