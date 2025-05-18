@@ -28,7 +28,7 @@
         
         nav.scrolled {
             background-color: #f8e8e8;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(150, 3, 3, 0.96);
             position: fixed;
             height: 90px;
             padding: 5px 0;

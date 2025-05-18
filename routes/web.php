@@ -29,7 +29,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/client/product',[ProductControllerClient::class,"index"])->name('productClient');
     Route::get('/client/service',[serviceControllerClient::class,"index"])->name('serviceClient');
-    Route::get('/client/gallery',[galleryControllerClient::class,"index"])->name('galleryClient');
+    Route::get('/client/gallery', [galleryControllerClient::class, "index"])
+        ->name('galleryClient')
+        ->middleware('verified');
     Route::get('/client/contact',[contactControllerClient::class,"index"])->name('contactClient');
 });
 
